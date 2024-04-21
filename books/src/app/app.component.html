@@ -1,0 +1,42 @@
+<div class="book-review-container">
+  <div class="header-section">
+    <h1>{{ mainTitle }}</h1>
+  </div>
+
+  <ng-container *ngIf="!endOfReview; else endScreen">
+    <div class="book-details">
+      <div>Book Title</div>
+      <div><b>{{ selectedBook.title }}</b></div>
+    </div>
+    <div class="additional-info">
+      <div class="book-details">
+        <div>Book Description</div>
+        <div><b>{{ selectedBook.description }}</b></div>
+      </div>
+      <div class="book-details">
+        <div>Book Author</div>
+        <div><b>{{ selectedBook.author }}</b></div>
+      </div>
+    </div>
+    <div class="book-details">
+      <div>Current Rating</div>
+      <div><b>{{ calculateAverageRating() }}</b></div>
+    </div>
+    <div class="rating-section">
+      <div
+        class="rating-button"
+        *ngFor="let number of [1, 2, 3, 4, 5]"
+        (click)="rateBook(number)"
+      >
+        {{ number }}
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #endScreen>
+    <div class="end-screen">
+      <h2 style="text-align: center; font-size: 25px;">You have successfully rated all books</h2>
+      <div class="button" style="margin-bottom: 10px;" (click)="restart()">Rate Again</div>
+      <div class="button">No</div>
+    </div>
+  </ng-template>
+</div>
